@@ -4,9 +4,9 @@ info:
   title: WSLManager API
   version: '1.0'
 servers:
-  - url: https://api.server.test/v1
+  - url: https://api.server.test/api/v1
 paths:
-  /api/distributions:
+  /distributions:
     get:
       tags:
         - distributions
