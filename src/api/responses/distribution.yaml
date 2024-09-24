@@ -1,0 +1,28 @@
+# VSCode: Shift + Alt + P
+openapi: '3.0.3'
+info:
+  title: WSLManager API
+  version: '1.0'
+  description: 'ディストリビューション'
+components:
+  schemas:
+    response_distribution:
+      type: object
+      required:
+        - isDefault
+        - name
+        - state
+        - version
+      properties:
+        isDefault:
+          type: boolean
+          example: true
+        name:
+          type: string
+          example: Ubuntu
+        state:
+          type: string
+          example: Running
+        version:
+          type: string
+          example: 2.0

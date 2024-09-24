@@ -31,5 +31,5 @@ WORKDIR /home/developer
 RUN wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.8.0/openapi-generator-cli-7.8.0.jar -O openapi-generator-cli.jar \
  && curl https://raw.githubusercontent.com/OpenAPITools/openapi-generator/master/bin/utils/openapi-generator-cli.sh > /home/developer/openapi-generator-cli \
  && chmod u+x /home/developer/openapi-generator-cli \
- && /home/developer/openapi-generator-cli
+ && /home/developer/openapi-generator-cli; exit 0
 

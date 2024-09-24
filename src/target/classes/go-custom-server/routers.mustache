@@ -1,0 +1,33 @@
+{{>partial_header}}
+package http
+
+import (
+  "net/http"
+  "strings"
+)
+
+type Route struct {
+  Name  string
+  Method      string
+  Pattern     string
+  HandlerFunc http.HandlerFunc
+}
+
+type Routes []Route
+
+{{#apiInfo}}{{#apis}}
+type {{classname}}Router interface { {{#operations}}{{#operation}}
+  {{operationId}}(http.ResponseWriter, *http.Request){{/operation}}{{/operations}}
+}
+
+func New{{classname}}Routes(r {{classname}}Router) Routes {
+  return Routes{ {{#operations}}{{#operation}}
+    {
+      Method: strings.ToUpper("{{httpMethod}}"),
+      Pattern: "{{{basePathWithoutHost}}}{{{path}}}",
+      HandlerFunc: r.{{operationId}},
+    },{{/operation}}{{/operations}}
+  }
+}
+
+{{/apis}}{{/apiInfo}}
