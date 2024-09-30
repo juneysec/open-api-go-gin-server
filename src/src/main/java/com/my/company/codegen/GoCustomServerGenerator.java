@@ -34,6 +34,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
+import java.util.*;
 
 public class GoCustomServerGenerator extends AbstractGoCodegen {
 
@@ -140,11 +141,9 @@ public class GoCustomServerGenerator extends AbstractGoCodegen {
             if (op.path != null) {
                 op.path = op.path.replaceAll("\\{(.*?)\\}", ":$1");
             }
-        }
 
-        for (CodegenOperation operation : operations) {
             // http method verb conversion (e.g. Put => PUT)
-            operation.httpMethod = operation.httpMethod.toUpperCase(Locale.ROOT); //camelize(operation.httpMethod.toLowerCase(Locale.ROOT));
+            op.httpMethod = op.httpMethod.toUpperCase(Locale.ROOT); //camelize(operation.httpMethod.toLowerCase(Locale.ROOT));
         }
 
         return objs;
