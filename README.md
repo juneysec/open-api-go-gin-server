@@ -4,7 +4,7 @@ Go の Gin ＋ OpenAPI Generator
 
 ## コード生成部分のカスタマイズ
 
-下記を適宜修正する
+下記を適宜修正する。最低限 routers.mustache の ginsample をプロジェクトのモジュール名に変更する。
 
 - src/src/main/java/com/my/company/codegen/GoCustomServerGenerator.java
 - src/src/main/resources/go-custom-server/*.mustache

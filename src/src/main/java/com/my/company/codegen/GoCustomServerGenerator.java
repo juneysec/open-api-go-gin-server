@@ -57,7 +57,7 @@ public class GoCustomServerGenerator extends AbstractGoCodegen {
     @Setter protected String packageVersion = "1.0.0";
     @Setter protected int serverPort = 8080;
     protected String projectName = "openapi-server";
-    @Setter protected String sourceFolder = "app";
+    @Setter protected String sourceFolder = "http";
     protected Boolean corsFeatureEnabled = false;
     @Setter protected Boolean addResponseHeaders = false;
     @Setter protected Boolean outputAsLibrary = false;
@@ -281,7 +281,7 @@ public class GoCustomServerGenerator extends AbstractGoCodegen {
         //  supportingFiles.add(new SupportingFile("go.mod.mustache", "", "go.mod"));
         //}
         //supportingFiles.add(new SupportingFile("openapi.mustache", "api", "openapi.yaml"));
-        supportingFiles.add(new SupportingFile("routers.mustache", sourceFolder + File.separator + "http", "routers.go"));
+        supportingFiles.add(new SupportingFile("routers.mustache", sourceFolder, "routers.go"));
         //supportingFiles.add(new SupportingFile("logger.mustache", sourceFolder, "logger.go"));
         //supportingFiles.add(new SupportingFile("impl.mustache", sourceFolder, "impl.go"));
         //supportingFiles.add(new SupportingFile("helpers.mustache", sourceFolder, "helpers.go"));
@@ -332,7 +332,7 @@ public class GoCustomServerGenerator extends AbstractGoCodegen {
 
         for (CodegenOperation operation : operations) {
             // http method verb conversion (e.g. PUT => Put)
-            operation.httpMethod = camelize(operation.httpMethod.toLowerCase(Locale.ROOT));
+            operation.httpMethod = operation.httpMethod.toUpperCase(Locale.ROOT); //camelize(operation.httpMethod.toLowerCase(Locale.ROOT));
         }
 
         // remove model imports to avoid error
@@ -474,7 +474,7 @@ public class GoCustomServerGenerator extends AbstractGoCodegen {
     @Override
     public String modelFileFolder() {
         //return outputFolder + File.separator + apiPackage().replace('.', File.separatorChar);
-        return outputFolder + File.separator + apiPackage().replace('.', File.separatorChar) + File.separator + "http" + File.separator + modelPackage();
+        return outputFolder + File.separator + apiPackage().replace('.', File.separatorChar) + File.separator + modelPackage();
     }
 
     public void setFeatureCORS(Boolean featureCORS) {
