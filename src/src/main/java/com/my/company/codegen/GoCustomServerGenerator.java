@@ -141,6 +141,12 @@ public class GoCustomServerGenerator extends AbstractGoCodegen {
                 op.path = op.path.replaceAll("\\{(.*?)\\}", ":$1");
             }
         }
+
+        for (CodegenOperation operation : operations) {
+            // http method verb conversion (e.g. Put => PUT)
+            operation.httpMethod = operation.httpMethod.toUpperCase(Locale.ROOT); //camelize(operation.httpMethod.toLowerCase(Locale.ROOT));
+        }
+
         return objs;
     }
 
